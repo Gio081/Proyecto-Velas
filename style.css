@@ -425,3 +425,44 @@ body {
     .navbar { padding: 20px 5%; }
     .nav-menu { display: none; } /* En desarrollo web real aquí implementarías menú hamburguesa */
 }
+
+
+
+
+/* =========================================================
+   REGLAS PARA IMÁGENES EN HD Y PROPORCIÓN PERFECTA
+   ========================================================= */
+
+/* 1. Galería (Aplica para gallery-masonry o gallery-grid) */
+.gallery-masonry img, 
+.gallery-grid img {
+    width: 100%;
+    height: 100%; /* Permite que llene el alto de su contenedor */
+    object-fit: cover; /* Evita cualquier deformación o estiramiento */
+    object-position: center; /* Mantiene el centro de la foto siempre visible */
+    image-rendering: high-quality; /* Fuerza al navegador a usar el mejor algoritmo de renderizado */
+    border-radius: 18px; /* Manteniendo el diseño de tu código original */
+    transition: 0.3s;
+}
+
+/* 2. Imágenes de las Tarjetas de Productos */
+.card img, 
+.product-card img {
+    width: 100%;
+    height: 260px; /* Manteniendo la altura de tu código original */
+    object-fit: cover;
+    object-position: center;
+    image-rendering: high-quality;
+}
+
+/* 3. Imagen de la sección "Acerca de" o Filosofía */
+.about-image img, 
+.split-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 400px; /* Asegura un buen tamaño en pantallas grandes */
+    object-fit: cover;
+    object-position: center;
+    image-rendering: high-quality;
+    border-radius: 18px; /* Manteniendo el diseño de tu código original */
+}
