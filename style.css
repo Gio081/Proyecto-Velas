@@ -1,0 +1,427 @@
+/* ==========================================================================
+   RESET & VARIABLES INTERNAS
+   ========================================================================== */
+:root {
+    --bg-primary: #FBFBFA;     /* Blanco roto premium */
+    --bg-secondary: #F4F3EF;   /* Gris arena suave */
+    --color-text: #1C1C1C;     /* Carbón puro para lectura limpia */
+    --color-muted: #6E6E6A;    /* Gris editorial */
+    --color-accent: #C5A880;   /* Dorado/Miel apagado minimalista */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Montserrat', sans-serif;
+    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   COMPONENTES REUTILIZABLES & ANIMACIÓN REVEAL
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.section-header {
+    margin-bottom: 50px;
+}
+
+.section-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+/* Estado inicial de elementos con animación al hacer scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition-smooth);
+}
+
+/* Estado activo gatillado por JS */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 5%;
+    background-color: rgba(251, 251, 250, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-left: 30px;
+    transition: var(--transition-smooth);
+}
+
+.nav-menu a:hover {
+    color: var(--color-accent);
+}
+
+/* ==========================================================================
+   SECCIONES PRINCIPALES (HERO, PRODUCTOS, SPLIT)
+   ========================================================================== */
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1603006905003-be475563bc59?q=80&w=1600&auto=format&fit=crop') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+}
+
+.hero-content {
+    position: relative;
+    color: #FFFFFF;
+    max-width: 650px;
+    z-index: 2;
+}
+
+.hero-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-accent);
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 3.8rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 15px 0 25px 0;
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.btn-minimal {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    transition: var(--transition-smooth);
+}
+
+.btn-minimal:hover {
+    background-color: #FFFFFF;
+    color: var(--color-text);
+}
+
+/* Collection & Cards Slider */
+.collection-section {
+    padding: 120px 0;
+    background-color: var(--bg-primary);
+}
+
+.product-slider {
+    padding-bottom: 60px !important;
+}
+
+.product-card {
+    background-color: #FFFFFF;
+    border-radius: 0px; /* Bordes rectos para estética editorial */
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    background-color: var(--bg-secondary);
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .card-img-wrapper img {
+    transform: scale(1.06);
+}
+
+.card-info {
+    padding: 30px 20px;
+}
+
+.card-meta {
+    font-size: 0.7rem;
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.card-info h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.card-info p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+/* Paginación minimalista de Swiper */
+.swiper-pagination-bullet-active {
+    background: var(--color-accent) !important;
+}
+
+/* Filosofía Asimétrica (Split Layout) */
+.philosophy-section {
+    padding: 100px 5%;
+    background-color: var(--bg-secondary);
+}
+
+.split-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.split-image img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+
+.split-text h2 {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.split-text p {
+    color: var(--color-muted);
+    margin-bottom: 20px;
+}
+
+.highlight-text {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 20px;
+    font-style: italic;
+    color: var(--color-text) !important;
+}
+
+/* Features Grid */
+.features-section {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.feature-box {
+    padding: 20px;
+}
+
+.feature-num {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.feature-box h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.feature-box p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   GALERÍA ASIMÉTRICA & FOOTER
+   ========================================================================== */
+.gallery-section {
+    padding: 100px 0;
+    background-color: var(--bg-secondary);
+}
+
+.gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+    filter: grayscale(20%);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+}
+
+/* Clases de diseño asimétrico para romper la cuadrícula tradicional */
+.item-tall { grid-row: span 2; }
+.item-wide { grid-column: span 2; }
+
+/* Footer */
+.footer {
+    background-color: #111111;
+    color: #FFFFFF;
+    padding: 80px 5% 30px 5%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-brand h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    color: #888888;
+    font-size: 0.9rem;
+}
+
+.footer-location h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--color-accent);
+}
+
+.location-link {
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.location-link:hover {
+    color: #FFFFFF;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #666666;
+    letter-spacing: 0.5px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    .split-container { grid-template-columns: 1fr; gap: 40px; }
+    .hero-title { font-size: 2.8rem; }
+    .item-wide { grid-column: span 1; }
+    .navbar { padding: 20px 5%; }
+    .nav-menu { display: none; } /* En desarrollo web real aquí implementarías menú hamburguesa */
+}
